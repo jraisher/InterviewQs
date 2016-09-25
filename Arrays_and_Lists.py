@@ -41,7 +41,7 @@ def reverse1(my_string):
     left = 0
     right = len(my_string) - 1
     
-    # lists are immutable, so store elements in list and join later
+    # strings are immutable, so store elements in list and join later
     new_string = list(my_string) 
 
     while left < right:
