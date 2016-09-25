@@ -65,19 +65,32 @@ def reverse3(my_string):
 # PROBLEM 3
 # Given two strings, write a method to decide if one is a permutation of the other
 
-def is_permute1(string1, string2):
-        
-
-TEST_DATA = [
-    'Ryan',
-    'Ryaaan',
-    'ABCDE',
-    'ABCDAAA',
-    'AAB',
-    'TESTING',
-    'GOOGLE',
-    'uniqe',
-    'unique']
+# using a dict to store chars
+def is_permute(str1, str2):
+    # length check
+    if len(str1) != len(str2):
+        return False
     
-for test in TEST_DATA:
-    print reverse1(test), reverse2(test), reverse3(test)
+    letters = {} 
+    
+    # loop through first string
+    for letter in str1:
+        if letter in letters:
+            letters[letter] += 1
+        else:
+            letters[letter] = 1
+    
+    # loop through second string
+    for letter in str2:
+        if letter in letters:
+            letters[letter] -= 1
+            if letters[letter] < 0:
+                return False
+        else:
+            return False
+    
+    # all 0 => permutation
+    for val in letters.values():
+        if val != 0:
+            return False
+    return True
