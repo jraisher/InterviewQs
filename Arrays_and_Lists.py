@@ -94,3 +94,19 @@ def is_permute(str1, str2):
         if val != 0:
             return False
     return True
+
+
+# PROBLEM 4
+# Write a method to replace all spaces in a string with %20
+
+def replace_space(my_string):
+	return '%20'.join(my_string.split())
+	
+
+# PROBLEM 5
+# Implement a method to perform basic string concatenation using the counts of
+# repeated characters, e.g. aabcccccaaa -> a2b1c5a3.  Assuming only upper and 
+# lower case letters.  Return original string if compressed list is not shorter.
+
+def string_compression(my_string):
+TBD
