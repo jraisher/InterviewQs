@@ -99,9 +99,11 @@ def is_permute(str1, str2):
 # PROBLEM 4
 # Write a method to replace all spaces in a string with %20
 
-def replace_space(my_string):
+def replace_space1(my_string):
 	return '%20'.join(my_string.split())
 	
+def replace_space2(my_string):
+    return my_string.replace(' ', '%20')
 
 # PROBLEM 5
 # Implement a method to perform basic string concatenation using the counts of
@@ -109,4 +111,44 @@ def replace_space(my_string):
 # lower case letters.  Return original string if compressed list is not shorter.
 
 def string_compression(my_string):
-TBD
+    cache = []
+    counter = 0
+    for i in range(len(my_string)):
+        
+        # if char not repeated - add to cache and reset counter
+        if i != 0 and my_string[i-1] != my_string[i]:
+            cache.append(my_string[i-1] + str(counter))
+            counter = 0
+        # if char was repeated, or first element 
+        counter += 1
+    
+    # add last element
+    cache.append(my_string[-1] + str(counter))
+    compressed_string = ''.join(cache)
+    
+    # compression length check
+    if len(compressed_string) >= len(my_string):
+        return my_string
+   
+    return compressed_string
+
+    
+# PROBLEM 6
+# Given an image represented by an NxN matrix, where each pixel in the image 
+# is 4 bytes, write a method to rotate the image by 90 degrees.  Can you do this
+# in place?
+
+def rotate_2d_array(my_matrix):
+    
+
+
+
+
+
+
+
+
+
+
+
+
