@@ -138,13 +138,69 @@ def string_compression(my_string):
 # is 4 bytes, write a method to rotate the image by 90 degrees.  Can you do this
 # in place?
 
-def rotate_2d_array(my_matrix):
-    
+def rotate_matrix1(my_matrix):
+	n = len(my_matrix) 
+	
+	# start at outter layer and move inwards
+	for layer in range(0, n/2):
+		first = layer
+		last = n - 1 - layer
+		for i in range(first, last):
+			
+			# left -> top
+			temp = my_matrix[first][first + i]
+			my_matrix[first][first + i] = my_matrix[last - i][first]
+			
+			# bottom -> left
+			my_matrix[last - i][first] = my_matrix[last][last - i]
+			
+			# right -> bottom
+			my_matrix[last][last - i] = my_matrix[first + i][last]
+			
+			# top -> right
+			my_matrix[first + i][last] = temp
+			
+	return my_matrix
+
+# one-liner
+def rotate_matrix2(my_matrix):
+	return [list(x) for x in zip(*my_matrix[::-1])]
 
 
+# PROBLEM 7
+# Write an algorithm such that if an element in an MxN matrix is 0, its entire row
+# and column are set to 0.
 
+def set_zero(mat, rind, cind):
+	m = len(mat) # number of rows
+	n = len(mat[0]) # number of cols
 
+	# set col to 0
+	for i in range(m):
+		mat[rind][i] = 0
+		
+	# set row to 0
+	for i in range(n):
+		mat[i][cind] = 0
+		
+	return mat
+	
+def zero_matrix(mat):
+	# need a way to store zero locations
+	zero_locs = [] # list of tuples (row_index, col_index)
+	
+	for rind, row in enumerate(mat):
+		for cind, val in enumerate(row):
+			if val == 0:
+				zero_locs.append((rind, cind))
+	
+	for rind, cind in zero_locs: 
+		mat = set_zero(mat, rind, cind)
+		
+	return mat
+	
 
+	
 
 
 
