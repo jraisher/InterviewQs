@@ -200,11 +200,19 @@ def zero_matrix(mat):
 	return mat
 	
 
+# PROBLEM 8
+# Given two strings s1 and s2, write code to check if s2 is a rotation of s1.  	
+
+def is_rotation(s1, s2):
 	
-
-
-
-
-
+	if len(s1) != len(s2):
+		return False
+	
+	ds1 = ''.join([s1, s1])
+	if s2 in ds1:
+		return True
+	else: 
+		return False
+	
 
 
