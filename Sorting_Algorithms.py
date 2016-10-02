@@ -66,3 +66,4 @@ def insertion_sort(my_list):
 	
 	return my_list
 
+# (Jordan): Make sure you also understand quicksort.  It's an O(nlogn) sort in place.

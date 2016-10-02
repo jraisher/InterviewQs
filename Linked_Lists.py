@@ -4,10 +4,15 @@ class Node:
 		self.value = value
 		self.next = next
 		
+# (Jordan): You have some inefficiencies here if you're making this a full
+# class.  For example, it would be a good idea to keep a pointer to the tail
+# for quick lookup.
 class LinkedList:
 	def __init__(self, head):
 		self.head = head
 		
+	# (Jordan): You run the risk here of getting an infinite loop if a user tries
+	# to append to a circular list.
 	# append to tail of LL
 	def append(self, value):
 		end = Node(value)
@@ -30,6 +35,7 @@ class LinkedList:
 			
 			cursor = cursor.next
 			
+		# (Jordan): This should be done first since it's a constant time check.
 		# check head
 		if self.head.value == value:
 			self.head = self.head.next
@@ -70,6 +76,7 @@ class LinkedList:
 # Write code to remove duplicates from an unsorted linked list
 
 	def remove_duplicates(self):
+		# (Jordan): This should be a set rather than a map.
 		cache = {self.head.value: 1}
 		prev = self.head
 		cursor = prev.next
@@ -99,6 +106,8 @@ class LinkedList:
 
 # PROBLEM 2
 # Implement an algorithm to find the kth to last element of a singly linked list
+# (Jordan): Can you implement this such that the kth value is returned rather
+# than printed?
 
 	# recursive solution, print value
 	def kth_to_last1(self, node, k):

@@ -25,12 +25,19 @@ def is_unique2(my_string):
     
 # What if you cannot use additional data structures?
 
+# (Jordan): This would work, (and great job with using the 'enumerate' builtin)
+# but it's not quite optimal.  The reason for this is that the 'in' keyword
+# iterates over the string to check for the existence of that character.  This
+# algorithm, therefore, is O(n^2) rather than the optimal solution which is
+# O(nlogn).
+#
 # for each char, check chars to the right
 def is_unique3(my_string):    
     for i, char in enumerate(my_string):
         if char in my_string[i+1:]:
             return False
     return True
+
     
 
 # PROBLEM 2
@@ -43,7 +50,7 @@ def reverse1(my_string):
     
     # strings are immutable, so store elements in list and join later
     new_string = list(my_string) 
-
+ 
     while left < right:
         new_string[left] = my_string[right]
         new_string[right] = my_string[left]
@@ -100,6 +107,11 @@ def is_permute(str1, str2):
 # PROBLEM 4
 # Write a method to replace all spaces in a string with %20
 
+# (Jordan): Try doing this one again without any python built-ins like 'join'
+# or 'replace'.  Also, I'd suggest making a note of both the time and space
+# complexity for these since the extra space used for join(split) is
+# non-negligible.
+
 def replace_space1(my_string):
 	return '%20'.join(my_string.split())
 	
@@ -110,6 +122,32 @@ def replace_space2(my_string):
 # Implement a method to perform basic string concatenation using the counts of
 # repeated characters, e.g. aabcccccaaa -> a2b1c5a3.  Assuming only upper and 
 # lower case letters.  Return original string if compressed list is not shorter.
+
+# (Jordan): The solution is good, but has some stylistic and performance
+# issues:
+#     'cache' really isn't doing the job of a cache, and is more of a string
+#         builder.
+#     'range' is somewhat inefficient to use and should be xrange instead.
+#     The logical statement you have is a bit confusing and could be more
+#         readable with a different starting condition.
+#
+# def string_compression(my_string):
+#   if not my_string:
+#     return my_string
+#
+#   builder = []
+#   character = my_string[0]
+#   count = 1
+#   
+#   for char in my_string[1:]:
+#     if char == character:
+#       count += 1
+#     else:
+#       builder.append(character)
+#       builder.append(count)
+#       character = char
+#       count = 1
+#   return my_string if len(builder) > len(my_string) else ''.join(builder)
 
 def string_compression(my_string):
     cache = []
@@ -177,6 +215,7 @@ def set_zero(mat, rind, cind):
 	n = len(mat[0]) # number of cols
 
 	# set col to 0
+  # (Jordan) When it comes to iteration, use xrange rather than range.
 	for i in range(m):
 		mat[rind][i] = 0
 		
